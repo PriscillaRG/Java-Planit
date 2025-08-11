@@ -80,8 +80,9 @@ public class ActionController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) {
-        return "delete";
+    public ResponseEntity<Void> deleteTodo(@PathVariable Long id) {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     
 }

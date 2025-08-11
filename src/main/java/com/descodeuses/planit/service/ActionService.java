@@ -145,9 +145,13 @@ public class ActionService {
         entity.setPriority(dto.getPriority());
 
         // membres
-        Set<ContactEntity> contacts = new HashSet<>(contactRepository.findAllById(dto.getMemberIds()));
+        Set<ContactEntity> contacts = new HashSet<>();
+        if (dto.getMemberIds() != null) {
+            contacts.addAll(contactRepository.findAllById(dto.getMemberIds()));
+        }
 
         entity.setMembers(contacts);
+
         // projet
         if (dto.getProjectId() != null) {
             entity.setProject(projectRepository.findById(dto.getProjectId())
