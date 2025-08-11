@@ -14,6 +14,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.CascadeType;
 
 @Entity
 @Table(name="todo")
@@ -52,7 +53,7 @@ public class ActionEntity {
 
     //private UserEntity userConnected;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
         name = "todo_contact",
         joinColumns = @JoinColumn(name = "todo_id"),
